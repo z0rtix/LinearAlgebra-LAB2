@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class Perceptron:
     def __init__(self, n_features, loss_type='cross_entropy', lambda_l2=0.0):
         self.w = np.random.randn(n_features, 1) * 0.01
@@ -13,10 +14,12 @@ class Perceptron:
 
     def forward(self, X):
         z = np.dot(X, self.w) + self.b
+
         return self.sigmoid(z)
 
     def compute_loss(self, y_true, y_pred, X=None):
         eps = 1e-15
+
         if self.loss_type == 'cross_entropy':
             y_pred = np.clip(y_pred, eps, 1 - eps)
             loss = -np.mean(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))
@@ -26,8 +29,10 @@ class Perceptron:
             loss = np.mean(np.maximum(0, 1 - y_true_hinge * z))
         else:
             raise ValueError("Unknown loss_type")
+        
         if self.lambda_l2 > 0:
             loss += 0.5 * self.lambda_l2 * np.sum(self.w ** 2)
+            
         return loss
 
     def fit(self, X_train, y_train, X_val, y_val, epochs=100, lr=0.1, batch_size=32, momentum=0.0):
@@ -56,8 +61,6 @@ class Perceptron:
                     margin = y_batch_hinge * z
                     mask = (margin < 1).astype(float)
                     error = -y_batch_hinge * mask
-                else:
-                    raise ValueError("Unknown loss_type")
 
                 dw = np.dot(X_batch.T, error) / X_batch.shape[0]
                 db = np.mean(error)
