@@ -123,34 +123,34 @@ L = 1/m Σ max(0, 1 - y·(Xw+b))
 Результат: точность на тесте ~0.8867.
 
 **График потерь:**  
-![baseline_loss](https://github.com/z0rtix/LinearAlgebra-LAB2/results/baseline_loss.png)
+![baseline_loss](https://github.com/z0rtix/LinearAlgebra-LAB2/blob/main/results/baseline_loss.png)
 
 **Разделяющая граница на обучающей выборке:**  
-![baseline_train](https://github.com/z0rtix/LinearAlgebra-LAB2/results/baseline_boundary_train.png)
+![baseline_train](https://github.com/z0rtix/LinearAlgebra-LAB2/blob/main/results/baseline_boundary_train.png)
 
 **Разделяющая граница на тестовой выборке:**  
-![baseline_test](https://github.com/z0rtix/LinearAlgebra-LAB2/results/baseline_boundary_test.png)
+![baseline_test](https://github.com/z0rtix/LinearAlgebra-LAB2/blob/main/results/baseline_boundary_test.png)
 
 ### Эксперимент 1: Влияние скорости обучения (`run_lr_experiment`)
 Значения `lr`: 0.001, 0.01, 0.5, 1.0.  
 Вывод: слишком маленький `lr` замедляет сходимость, слишком большой может привести к нестабильности или снижению точности. Оптимальны умеренные значения.
 
 **Графики потерь для разных `lr`:**  
-![lr_experiment](https://github.com/z0rtix/LinearAlgebra-LAB2/results/lr_experiment.png)
+![lr_experiment](https://github.com/z0rtix/LinearAlgebra-LAB2/blob/main/results/lr_experiment.png)
 
 ### Эксперимент 2: Влияние размера батча (`run_batch_experiment`)
 Значения `batch_size`: 1, 16, 64, 256.  
 Вывод: очень маленький батч вызывает сильные колебания функции потерь, большой даёт более гладкую кривую. Итоговая точность меняется незначительно.
 
 **Графики потерь для разных размеров батча:**  
-![batch_experiment](https://github.com/z0rtix/LinearAlgebra-LAB2/results/batch_experiment.png)
+![batch_experiment](https://github.com/z0rtix/LinearAlgebra-LAB2/blob/main/results/batch_experiment.png)
 
 ### Эксперимент 3: Влияние инициализации весов (`run_init_experiment`)
 Варианты: нули, малые случайные (N(0,0.01)), большие случайные (N(0,10)).  
 Вывод: нулевая и малая случайная инициализация работают хорошо, большие начальные веса могут замедлить сходимость, так как стартуют далеко от оптимума.
 
 **Графики потерь для разных инициализаций:**  
-![init_experiment](https://github.com/z0rtix/LinearAlgebra-LAB2/results/init_experiment.png)
+![init_experiment](https://github.com/z0rtix/LinearAlgebra-LAB2/blob/main/results/init_experiment.png)
 
 
 
@@ -159,18 +159,18 @@ L = 1/m Σ max(0, 1 - y·(Xw+b))
 ### Задание 1. Собственный генератор данных
 Результаты работы генераторов:
 - **Линейные облака:** точность 0.9333 — модель легко справляется.  
-  ![linear_separable](https://github.com/z0rtix/LinearAlgebra-LAB2/results/custom_linear_separable_boundary.png)
+  ![linear_separable](https://github.com/z0rtix/LinearAlgebra-LAB2/blob/main/results/custom_linear_separable_boundary.png)
 - **XOR:** точность 0.3500 — линейная модель не может разделить такую структуру.  
-  ![xor](https://github.com/z0rtix/LinearAlgebra-LAB2/results/custom_xor_boundary.png)
+  ![xor](https://github.com/z0rtix/LinearAlgebra-LAB2/blob/main/results/custom_xor_boundary.png)
 - **Окружность:** точность 0.6667 — граница-окружность недоступна перцептрону.  
-  ![circle](https://github.com/z0rtix/LinearAlgebra-LAB2/results/custom_circle_boundary.png)
+  ![circle](https://github.com/z0rtix/LinearAlgebra-LAB2/blob/main/results/custom_circle_boundary.png)
 
 Вывод: перцептрон применим только для линейно разделимых задач.
 
 ### Задание 2. Дополнительные функции потерь и регуляризация
 **Сравнение кросс-энтропии и Hinge loss:**  
 Hinge loss показал точность 0.92 (против 0.8867 у кросс-энтропии). Он более "требователен" к отступу, что на хорошо разделимых данных даёт преимущество.  
-![loss_comparison](https://github.com/z0rtix/LinearAlgebra-LAB2/results/loss_comparison.png)
+![loss_comparison](https://github.com/z0rtix/LinearAlgebra-LAB2/blob/main/results/loss_comparison.png)
 
 **L2-регуляризация:**  
 При увеличении λ норма весов уменьшается, модель упрощается, точность остаётся стабильной.  
@@ -178,20 +178,20 @@ Hinge loss показал точность 0.92 (против 0.8867 у крос
 λ=0.01: ||w||=2.48  
 λ=0.1: ||w||=1.21  
 λ=1.0: ||w||=0.28  
-![l2_regularization](https://github.com/z0rtix/LinearAlgebra-LAB2/results/l2_regularization.png)
+![l2_regularization](https://github.com/z0rtix/LinearAlgebra-LAB2/blob/main/results/l2_regularization.png)
 
 ### Задание 3. Метрики качества и анализ ошибок
 На тестовой выборке: Precision=0.85, Recall=0.93, F1=0.89, ROC-AUC=0.94.  
 **ROC-кривая:**  
-![roc_curve](https://github.com/z0rtix/LinearAlgebra-LAB2/results/roc_curve.png)
+![roc_curve](https://github.com/z0rtix/LinearAlgebra-LAB2/blob/main/results/roc_curve.png)
 
 **Анализ ошибок:** большинство неверных предсказаний сосредоточено вблизи разделяющей границы, что ожидаемо — там модель "сомневается".  
-![error_points](https://github.com/z0rtix/LinearAlgebra-LAB2/results/error_points.png)
+![error_points](https://github.com/z0rtix/LinearAlgebra-LAB2/blob/main/results/error_points.png)
 
 ### Задание 4. Градиентный спуск с моментом
 Импульс (β) накапливает градиенты, ускоряя сходимость.  
 Лучший результат при β=0.99 (точность 0.8933).  
-![momentum_experiment](https://github.com/z0rtix/LinearAlgebra-LAB2/results/momentum_experiment.png)
+![momentum_experiment](https://github.com/z0rtix/LinearAlgebra-LAB2/blob/main/results/momentum_experiment.png)
 
 ### Задание 5. Кросс-валидация и подбор гиперпараметров
 5-фолдная стратифицированная кросс-валидация перебрала 9 комбинаций `lr` и `batch_size`.  
